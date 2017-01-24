@@ -34,7 +34,7 @@ public class StudentServiceTest {
     public void shouldCreateNewStudent() throws Exception {
         Student student = new Student("bob@aol.com");
         student = this.studentService.save(student);
-        assertEquals(1, student.getId());
+        assertEquals(4, student.getId());
         assertEquals(0, student.getGrades().size());
     }
 
