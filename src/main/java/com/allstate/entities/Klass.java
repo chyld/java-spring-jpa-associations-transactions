@@ -10,12 +10,13 @@ import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "klasses")
-@Data
+
 public class Klass {
     private int id;
     private int version;
@@ -27,6 +28,17 @@ public class Klass {
     private Date created;
     private Date modified;
     private List<Grade> grades;
+
+    public Klass() {
+    }
+    public Klass(String name, Date semester, int credits, Department department, double fee) {
+        this.name = name;
+        this.semester = semester;
+        this.credits = credits;
+        this.department = department;
+        this.fee = fee;
+        this.grades = new ArrayList<>();
+    }
 
     @Id
     @GeneratedValue
@@ -105,7 +117,7 @@ public class Klass {
         this.modified = modified;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "klass")
     @JsonIgnore
     public List<Grade> getGrades() {
         return grades;

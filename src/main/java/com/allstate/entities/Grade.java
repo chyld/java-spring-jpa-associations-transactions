@@ -57,7 +57,7 @@ public class Grade {
         this.value = value;
     }
 
-    @Column(nullable = false)
+    @Column(name = "is_passing", nullable = false)
     public boolean isPassing() {
         return isPassing;
     }
