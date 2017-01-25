@@ -34,7 +34,7 @@ public class StudentServiceTest {
     public void shouldCreateNewStudent() throws Exception {
         Student student = new Student("bob@aol.com");
         student = this.studentService.save(student);
-        assertEquals(4, student.getId());
+        assertEquals(5, student.getId());
         assertEquals(0, student.getGrades().size());
     }
 
@@ -46,5 +46,23 @@ public class StudentServiceTest {
         assertEquals(1, student.getId());
         assertEquals(3, student.getGrades().size());
         assertEquals(3, student.getKlasses().size());
+    }
+
+    @Test
+    public void shouldGetStudentAverageScore() throws Exception {
+        double average = this.studentService.average(1);
+        assertEquals(51, average, 1);
+    }
+
+    @Test
+    public void shouldNotGetStudentAverageScoreMissingStudent() throws Exception {
+        double average = this.studentService.average(99);
+        assertEquals(0, average, 1);
+    }
+
+    @Test
+    public void shouldNotGetStudentAverageScoreNoGrades() throws Exception {
+        double average = this.studentService.average(4);
+        assertEquals(0, average, 1);
     }
 }

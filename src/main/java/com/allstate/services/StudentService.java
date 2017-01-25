@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -32,5 +34,10 @@ public class StudentService {
 
     public Student findByEmail(String email){
         return this.studentRepository.findByEmail(email);
+    }
+
+    public double average(int id){
+        Optional<BigDecimal> value = this.studentRepository.average(id);
+        return value.isPresent() ? value.get().doubleValue() : 0;
     }
 }

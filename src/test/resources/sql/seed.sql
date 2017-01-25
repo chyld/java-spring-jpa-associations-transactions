@@ -9,7 +9,8 @@ set FOREIGN_KEY_CHECKS = 1;
 insert into students (email) values
   ('bob@aol.com'),
   ('sue@aol.com'),
-  ('ali@aol.com');
+  ('ali@aol.com'),
+  ('joe@aol.com');
 
 insert into klasses (credits, department, fee, name, semester) values
   (4, 'SCIENCE', 500.0, 'Physics 101', '2017-01-25 00:00:00'),
