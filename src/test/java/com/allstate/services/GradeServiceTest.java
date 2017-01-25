@@ -1,5 +1,6 @@
 package com.allstate.services;
 
+import com.allstate.entities.Grade;
 import com.allstate.entities.Klass;
 import com.allstate.entities.Student;
 import com.allstate.enums.Department;
@@ -21,7 +22,13 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Sql(value = {"/sql/seed.sql"})
-public class KlassServiceTest {
+public class GradeServiceTest {
+    @Autowired
+    private GradeService gradeService;
+
+    @Autowired
+    private StudentService studentService;
+
     @Autowired
     private KlassService klassService;
 
@@ -36,18 +43,21 @@ public class KlassServiceTest {
     }
 
     @Test
-    public void shouldCreateNewKlass() throws Exception {
-        Klass klass = new Klass("Physics 101", Date.valueOf(LocalDate.now()), 4, Department.SCIENCE, 500);
-        klass = this.klassService.save(klass);
-        assertEquals(4, klass.getId());
-        assertEquals(0, klass.getGrades().size());
+    public void shouldCreateNewGrade() throws Exception {
+        Student student = this.studentService.findById(1);
+        Klass klass = this.klassService.findById(1);
+        Grade grade = new Grade(91, true, student, klass);
+        grade = this.gradeService.save(grade);
+        assertEquals(10, grade.getId());
+        assertEquals("bob@aol.com", grade.getStudent().getEmail());
+        assertEquals("Physics 101", grade.getKlass().getName());
     }
 
     @Test
-    @Transactional
-    public void shouldFindOneKlassById() throws Exception {
-        Klass klass = this.klassService.findById(1);
-        assertEquals(1, klass.getId());
-        assertEquals(3, klass.getGrades().size());
+    public void shouldFindGradeById() throws Exception {
+        Grade grade = this.gradeService.findById(1);
+        assertEquals(1, grade.getId());
+        assertEquals("bob@aol.com", grade.getStudent().getEmail());
+        assertEquals("Physics 101", grade.getKlass().getName());
     }
 }
