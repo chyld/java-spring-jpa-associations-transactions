@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,8 +47,8 @@ public class Student {
         this.version = version;
     }
 
-    @Column(nullable = false)
     @Size(min = 3)
+    @NotNull
     public String getEmail() {
         return email;
     }

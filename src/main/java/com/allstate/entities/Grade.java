@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
@@ -49,7 +50,7 @@ public class Grade {
         this.version = version;
     }
 
-    @Column(nullable = false)
+    @NotNull
     public int getValue() {
         return value;
     }
@@ -57,7 +58,8 @@ public class Grade {
         this.value = value;
     }
 
-    @Column(name = "is_passing", nullable = false)
+    @Column(name = "is_passing")
+    @NotNull
     public boolean isPassing() {
         return isPassing;
     }

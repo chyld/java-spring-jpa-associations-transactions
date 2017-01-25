@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "klasses")
-
+@Data
 public class Klass {
     private int id;
     private int version;
@@ -57,8 +58,8 @@ public class Klass {
         this.version = version;
     }
 
-    @Column(nullable = false)
     @Size(min = 1)
+    @NotNull
     public String getName() {
         return name;
     }
@@ -66,7 +67,7 @@ public class Klass {
         this.name = name;
     }
 
-    @Column(nullable = false)
+    @NotNull
     public Date getSemester() {
         return semester;
     }
@@ -74,8 +75,8 @@ public class Klass {
         this.semester = semester;
     }
 
-    @Column(nullable = false)
     @Min(value = 0)
+    @NotNull
     public int getCredits() {
         return credits;
     }
@@ -83,8 +84,9 @@ public class Klass {
         this.credits = credits;
     }
 
-    @Column(nullable = false, columnDefinition = "ENUM('SCIENCE', 'ENGINEERING', 'LITERATURE', 'PHILOSOPHY')")
+    @Column(columnDefinition = "ENUM('SCIENCE', 'ENGINEERING', 'LITERATURE', 'PHILOSOPHY')")
     @Enumerated(EnumType.STRING)
+    @NotNull
     public Department getDepartment() {
         return department;
     }
@@ -92,8 +94,8 @@ public class Klass {
         this.department = department;
     }
 
-    @Column(nullable = false)
     @DecimalMin(value = "0")
+    @NotNull
     public double getFee() {
         return fee;
     }
