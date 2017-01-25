@@ -36,6 +36,10 @@ public class StudentService {
         return this.studentRepository.findByEmail(email);
     }
 
+    public Iterable<Student> findAll(){
+        return this.studentRepository.findAll();
+    }
+
     public double average(int id){
         Optional<BigDecimal> value = this.studentRepository.average(id);
         return value.isPresent() ? value.get().doubleValue() : 0;
