@@ -1,9 +1,6 @@
 package com.allstate;
 
-import com.allstate.services.GradeService;
-import com.allstate.services.GradeServiceTest;
-import com.allstate.services.KlassServiceTest;
-import com.allstate.services.StudentServiceTest;
+import com.allstate.services.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -15,7 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @Suite.SuiteClasses({
 		KlassServiceTest.class,
 		StudentServiceTest.class,
-		GradeServiceTest.class
+		GradeServiceTest.class,
+		LearningManagementServiceTest.class
 })
 public class EducationApplicationTests {
 	@Test
