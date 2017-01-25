@@ -5,8 +5,10 @@ import com.allstate.entities.Student;
 import com.allstate.repositories.IKlassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class KlassService {
     private IKlassRepository klassRepository;
 
