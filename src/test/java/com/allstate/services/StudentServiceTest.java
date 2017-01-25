@@ -45,5 +45,6 @@ public class StudentServiceTest {
         student = this.studentService.findById(1);
         assertEquals(1, student.getId());
         assertEquals(3, student.getGrades().size());
+        assertEquals(3, student.getKlasses().size());
     }
 }

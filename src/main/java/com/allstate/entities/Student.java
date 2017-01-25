@@ -22,6 +22,7 @@ public class Student {
     private Date created;
     private Date modified;
     private List<Grade> grades;
+    private List<Klass> klasses;
 
     public Student() {
     }
@@ -72,12 +73,24 @@ public class Student {
         this.modified = modified;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    @OneToMany(mappedBy = "student")
     @JsonIgnore
     public List<Grade> getGrades() {
         return grades;
     }
     public void setGrades(List<Grade> grades) {
         this.grades = grades;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "grades",
+            joinColumns = @JoinColumn(name = "klass_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"))
+    @JsonIgnore
+    public List<Klass> getKlasses() {
+        return klasses;
+    }
+    public void setKlasses(List<Klass> klasses) {
+        this.klasses = klasses;
     }
 }

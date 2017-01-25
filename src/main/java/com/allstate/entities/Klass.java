@@ -17,7 +17,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "klasses")
-@Data
+
 public class Klass {
     private int id;
     private int version;
@@ -29,6 +29,7 @@ public class Klass {
     private Date created;
     private Date modified;
     private List<Grade> grades;
+    private List<Student> students;
 
     public Klass() {
     }
@@ -119,12 +120,21 @@ public class Klass {
         this.modified = modified;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "klass")
+    @OneToMany(mappedBy = "klass")
     @JsonIgnore
     public List<Grade> getGrades() {
         return grades;
     }
     public void setGrades(List<Grade> grades) {
         this.grades = grades;
+    }
+
+    @ManyToMany(mappedBy="klasses")
+    @JsonIgnore
+    public List<Student> getStudents() {
+        return students;
+    }
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }
